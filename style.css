@@ -1,0 +1,17 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #14100c; color: #f5ead9; }
+header { text-align: center; padding: 2rem 1rem 1rem; }
+h1 { font-size: 2.4rem; margin: 0; color: #ffb347; }
+.subtitle { font-size: 1.2rem; color: #ffd9a0; }
+.intro { max-width: 720px; margin: 1rem auto; line-height: 1.6; }
+.lang-toggle button { margin: 0 0.3rem; padding: 0.5rem 1.2rem; border: 1px solid #ffb347;
+  background: transparent; color: #ffb347; cursor: pointer; border-radius: 20px; }
+.lang-toggle button.active { background: #ffb347; color: #14100c; }
+#gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem; padding: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.card { background: #241c14; border-radius: 12px; overflow: hidden; }
+.card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.card h2 { font-size: 1.1rem; margin: 0.8rem 1rem 0.2rem; color: #ffb347; }
+.card p { margin: 0 1rem 1rem; line-height: 1.5; color: #e8dcc8; }
+.coming-soon, footer { text-align: center; padding: 1.5rem; color: #d8c9ae; }
+.coming-soon h2 { color: #ffb347; }
