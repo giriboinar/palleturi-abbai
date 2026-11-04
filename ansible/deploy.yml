@@ -1,0 +1,35 @@
+---
+- name: Deploy Palleturi Abbai site
+  hosts: webservers
+  become: true
+  vars:
+    app_dir: /opt/palleturi-abbai
+  tasks:
+    - name: Create app directory
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        mode: "0755"
+    - name: Copy site files
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ app_dir }}/"
+        mode: "0644"
+      loop:
+        - index.html
+        - style.css
+        - app.js
+        - scenes.json
+    - name: Copy scene images
+      ansible.builtin.copy:
+        src: images/
+        dest: "{{ app_dir }}/images/"
+        mode: "0644"
+    - name: Start the site container
+      community.docker.docker_container:
+        name: palleturi-abbai
+        image: palleturi-abbai:latest
+        state: started
+        restart_policy: unless-stopped
+        ports:
+          - "8080:80"
