@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: palleturi-abbai
+  labels:
+    app: palleturi-abbai
+spec:
+  type: ClusterIP
+  selector:
+    app: palleturi-abbai
+  ports:
+    - port: 80
+      targetPort: 80
