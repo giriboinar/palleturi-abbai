@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Validate gallery data
+        run: python3 -m json.tool scenes.json > /dev/null
+      - name: Check site files exist
+        run: test -f index.html && test -f style.css && test -f app.js
+      - name: Build Docker image
+        run: docker build -t palleturi-abbai:latest .
+      - name: Scan image (report only)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: palleturi-abbai:latest
+          format: table
+          exit-code: "0"
+          severity: HIGH,CRITICAL
